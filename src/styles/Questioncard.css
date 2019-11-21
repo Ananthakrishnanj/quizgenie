@@ -1,0 +1,37 @@
+.questionCard {
+  height: 50vh;
+  width: 70vw;
+  border-radius: 10px;
+  border: 3px;
+  border-style: solid;
+  border-color: #09d3ac;
+  background: #423e3e;
+}
+
+.optionContainer {
+  display: flex;
+  width: 60%;
+  margin: 10px auto;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.optionContainer > button {
+  flex: 0 50%;
+  box-sizing: border-box;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: #000000;
+  padding: 10px 0;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+
+.optionContainer > button:hover {
+  color: #ffffff;
+}

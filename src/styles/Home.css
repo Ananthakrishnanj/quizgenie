@@ -1,0 +1,95 @@
+.gameForm {
+  text-align: center;
+}
+.inputName {
+  color: #09d3ac;
+  width: 100%;
+  display: block;
+  height: 2em;
+  line-height: 2;
+  outline-color: #09d3ac;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  border-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  border: 0 !important;
+  background: #2c3e50;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  height: 2em;
+  line-height: 2;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+select {
+  flex: 1;
+  padding: 0 0.5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #09d3ac;
+}
+
+.startButton {
+  background: #09d3ac;
+  margin-top: 10px;
+  display: inline-block;
+  outline-color: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  -webkit-transition: 0.5s all ease;
+  -o-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+.startButton:hover {
+  background: #10ffcf;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 10px;
+}
