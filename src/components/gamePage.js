@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import Axios from "axios";
 import "../styles/Game.css";
 import Questions from "./questions";
+import Loader from "./loader";
+import {Redirect} from 'react-router-dom';
+
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerName: "",
+      playerName: this.props.location.state.name,
       isLoading: true,
-      timer: ""
+      timer: "",
+      score: 0,
+      totalScore: 10,
+      gameCompleted: false
     };
   }
 
@@ -50,10 +56,23 @@ class Game extends Component {
       this.setState({ timer: minutes + ":" + seconds });
 
       if (--timer < 0) {
-        timer = 300;
+       this.changeGameStatus(true);
       }
     }, 1000);
   };
+
+  updateScore = (points) => {
+    this.setState({
+      score: this.state.score + points
+    })
+  }
+
+  changeGameStatus = (status) => {
+    clearInterval(this.startTimer);
+    this.setState({
+      gameCompleted: status
+    })
+  }
 
   async componentDidMount() {
     await this.getSessionToken();
@@ -66,16 +85,25 @@ class Game extends Component {
   }
 
   render() {
+    if(this.state.gameCompleted == true) {
+      return <Redirect to={{pathname:'/scorecard', state: {
+        name: this.state.playerName,
+        timer: this.state.timer,
+        score: this.state.score,
+        totalScore: this.state.totalScore
+      }}} />
+    }
     return (
       <div>
         <div className="header">
-          <div>{this.state.timer}</div>
-          <div className="header-name">{this.props.location.state.name}</div>
+          <div><span class="glyphicon glyphicon-time timer"></span><span className="timerText">{this.state.timer}</span></div>
+          <div className="header-name">Quiz Genie</div>    
+          <div className="header-name">{this.props.location.state.name}</div>          
         </div>
         {this.state.isLoading ? (
-          <p>loading</p>
+          <Loader />
         ) : (
-          <Questions questions={this.questions} />
+          <Questions questions={this.questions} updateScore={this.updateScore} changeGameStatus={this.changeGameStatus} />
         )}
       </div>
     );

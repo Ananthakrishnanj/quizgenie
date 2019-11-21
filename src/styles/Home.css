@@ -73,6 +73,7 @@ select {
 
 .startButton {
   background: #09d3ac;
+  color: #000000;
   margin-top: 10px;
   display: inline-block;
   outline-color: transparent;

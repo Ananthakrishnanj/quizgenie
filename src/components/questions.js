@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/Questioncard.css";
+import {Redirect} from 'react-router-dom';
 
 class Questions extends Component {
   constructor(props) {
@@ -33,12 +34,11 @@ class Questions extends Component {
   submitAnswer = e => {
     if (this.questionIndex < this.props.questions.length - 1) {
       if (e.target.textContent === this.state.question.correct_answer) {
-        console.log("Correct");
-      } else {
-        console.log("Wrong");
+        this.props.updateScore(1);
       }
       this.nextQuestion();
     } else {
+      this.props.changeGameStatus(true);
     }
   };
 

@@ -1,0 +1,16 @@
+.scoreCard {
+    min-width: 60vh;
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px;
+    border-style: solid;
+    border-color: #09d3ac;
+    background: #3c414d;
+  }
+
+  .stars>span {
+      padding: 2px 2px;
+  }
+  .checked {
+    color: orange;
+  }
