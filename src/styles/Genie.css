@@ -1,0 +1,54 @@
+.genie-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.genie {
+  background-image: url("../assets/genie.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 8px;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  width: 160px;
+  height: 160px;
+}
+
+.lamp {
+  background: url("../assets/lamp.png") left center;
+  position: absolute;
+  bottom: 0;
+  right: -20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  width: 40px;
+  height: 40px;
+}
+.expression {
+  background: url("../assets/expression_sprite.png") left center;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  left: 57px;
+  top: 8px;
+}
+
+@keyframes floating {
+  from {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, -15px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
+}
