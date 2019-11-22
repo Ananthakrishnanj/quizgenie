@@ -37,8 +37,20 @@
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;
-  left: 57px;
+  left: 59px;
   top: 8px;
+  animation: facechange 3s steps(32);
+  animation-iteration-count: infinite;
+}
+
+@keyframes facechange {
+  0% {
+    background-position-x: 0px;
+  }
+
+  100% {
+    background-position-x: -936px;
+  }
 }
 
 @keyframes floating {
