@@ -1,16 +1,61 @@
 .scoreCard {
-    min-width: 60vh;
-    border-radius: 10px;
-    padding: 10px;
-    border: 3px;
-    border-style: solid;
-    border-color: #09d3ac;
-    background: #3c414d;
-  }
+  min-width: 60vh;
+  border-radius: 10px;
+  padding: 10px;
+  border: 3px;
+  border-style: solid;
+  border-color: #09d3ac;
+  background: #3c414d;
+}
 
-  .stars>span {
-      padding: 2px 2px;
+.stars > span {
+  padding: 2px 2px;
+}
+.checked {
+  color: #ffdd1b;
+}
+
+.fa-star:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.fa-star:nth-child(2) {
+  animation-delay: 1s;
+}
+.fa-star:nth-child(3) {
+  animation-delay: 1.5s;
+}
+.fa-star:nth-child(4) {
+  animation-delay: 2s;
+}
+.fa-star:nth-child(5) {
+  animation-delay: 2.5s;
+}
+
+.glowing-gold {
+  -webkit-animation: gold-glow 0.75s ease-in-out infinite alternate;
+  -moz-animation: gold-glow 0.75s ease-in-out infinite alternate;
+  animation: gold-glow 0.75s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes gold-glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ffdd1b,
+      0 0 70px #ffdd1b, 0 0 80px #ffdd1b, 0 0 100px #ffdd1b, 0 0 150px #ffdd1b;
   }
-  .checked {
-    color: orange;
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ffdd1b,
+      0 0 35px #ffdd1b, 0 0 40px #ffdd1b, 0 0 50px #ffdd1b, 0 0 75px #ffdd1b;
   }
+}
+
+@keyframes gold-glow {
+  from {
+    text-shadow: 0 0 10px rgb(206, 206, 206), 0 0 20px #fff, 0 0 30px #fff,
+      0 0 40px #ffdd1b, 0 0 70px #ffdd1b, 0 0 80px #ffdd1b, 0 0 100px #ffdd1b,
+      0 0 150px #ffdd1b;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ffdd1b,
+      0 0 35px #ffdd1b, 0 0 40px #ffdd1b, 0 0 50px #ffdd1b, 0 0 75px #ffdd1b;
+  }
+}

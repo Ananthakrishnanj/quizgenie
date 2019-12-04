@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/Home.css";
 import { Link } from "react-router-dom";
+import { playAudio } from "../utils/audio";
 
 class Home extends Component {
   constructor(props) {
@@ -21,6 +22,10 @@ class Home extends Component {
     this.setState({
       categoryId: e.target.value
     });
+  };
+
+  startAudio = () => {
+    playAudio("start");
   };
 
   categories = [
@@ -129,6 +134,14 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <audio
+          src="https://www.looperman.com/media/loops/3480777/looperman-l-3480777-0184512-percussion-arabic-saidi-style.mp3"
+          autoPlay="true"
+          id="audio"
+          loop
+          controls
+          hidden
+        ></audio>
         <h1>Quiz Genie</h1>
         <form className="gameForm">
           <input
@@ -159,7 +172,9 @@ class Home extends Component {
               }
             }}
           >
-            <button className="startButton">Start Quiz</button>
+            <button className="startButton" onClick={this.startAudio}>
+              Start Quiz
+            </button>
           </Link>
         </form>
         <footer className="footer">

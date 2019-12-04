@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/Questioncard.css";
-import { Redirect } from "react-router-dom";
+import { playAudio } from "../utils/audio";
 
 class Questions extends Component {
   constructor(props) {
@@ -34,7 +34,10 @@ class Questions extends Component {
   submitAnswer = e => {
     if (this.questionIndex < this.props.questions.length - 1) {
       if (e.target.textContent === this.state.question.correct_answer) {
+        playAudio("correct");
         this.props.updateScore(1);
+      } else {
+        playAudio("wrong");
       }
       this.nextQuestion();
     } else {

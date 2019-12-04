@@ -89,7 +89,7 @@ class Game extends Component {
   }
 
   render() {
-    if (this.state.gameCompleted == true) {
+    if (this.state.gameCompleted === true) {
       return (
         <Redirect
           to={{
