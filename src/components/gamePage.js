@@ -98,7 +98,8 @@ class Game extends Component {
               name: this.state.playerName,
               timer: this.state.timer,
               score: this.state.score,
-              totalScore: this.state.totalScore
+              totalScore: this.state.totalScore,
+              categoryId: this.props.location.state.categoryId
             }
           }}
         />

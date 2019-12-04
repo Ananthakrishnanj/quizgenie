@@ -41,7 +41,15 @@ class Scorecard extends Component {
         </div>
         <div className="time">ETA : {this.props.location.state.timer}</div>
         <div className="stars">{this.showRating()}</div>
-        <Link to="/">
+        <Link
+          to={{
+            pathname: "/game",
+            state: {
+              name: this.props.location.state.name,
+              categoryId: this.props.location.state.categoryId
+            }
+          }}
+        >
           <button className="startButton">Re-play Quiz</button>
         </Link>
       </div>

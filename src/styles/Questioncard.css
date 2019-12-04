@@ -35,3 +35,9 @@
 .optionContainer > button:hover {
   color: #ffffff;
 }
+
+@media (hover: none) {
+  .optionContainer > button:hover {
+    color: #000000;
+  }
+}
