@@ -50,9 +50,11 @@ class Questions extends Component {
       <div className="questionCard">
         <div className="question">{this.state.question.question}</div>
         <div className="optionContainer">
-          {this.state.options.map(option => {
+          {this.state.options.map((option, index) => {
             return (
-              <button onClick={this.submitAnswer.bind(this)}>{option}</button>
+              <button key={index} onClick={this.submitAnswer.bind(this)}>
+                {option}
+              </button>
             );
           })}
         </div>

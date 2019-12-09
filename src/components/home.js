@@ -172,7 +172,12 @@ class Home extends Component {
               }
             }}
           >
-            <button className="startButton" onClick={this.startAudio}>
+            <button
+              className={this.state.name ? "startButton" : "enterName"}
+              onClick={this.startAudio}
+              disabled={!this.state.name}
+              title={this.state.name ? "" : "Enter your name"}
+            >
               Start Quiz
             </button>
           </Link>

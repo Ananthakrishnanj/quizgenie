@@ -121,7 +121,7 @@ class Game extends Component {
       <div>
         <div className="header">
           <div>
-            <span class="glyphicon glyphicon-time timer"></span>
+            <span className="glyphicon glyphicon-time timer"></span>
             <span className="timerText">{this.state.timer}</span>
           </div>
           <div className="header-name">Quiz Genie</div>

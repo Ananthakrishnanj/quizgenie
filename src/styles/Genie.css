@@ -39,8 +39,11 @@
   height: 40px;
   left: 59px;
   top: 8px;
-  animation: facechange 3s steps(32);
-  animation-iteration-count: infinite;
+
+  /* animation: facechange 3s steps(32); */
+  background-position-x: 0px;
+  transition: background-position 0.25s ease-in;
+  /* animation-iteration-count: infinite; */
 }
 
 @keyframes facechange {
@@ -63,4 +66,89 @@
   to {
     transform: translate(0, -0px);
   }
+}
+
+.smile {
+  background-position-x: 0px;
+}
+.idle {
+  background-position-x: -30px;
+}
+.openmouth {
+  background-position-x: -59px;
+}
+.frown {
+  background-position-x: -88px;
+}
+.cool {
+  background-position-x: -118px;
+}
+.angel {
+  background-position-x: -147px;
+}
+.eyeclosedsmile {
+  background-position-x: -176px;
+}
+.fowl {
+  background-position-x: -203px;
+}
+.money {
+  background-position-x: -259px;
+}
+.toungeout {
+  background-position-x: -289px;
+}
+.spook {
+  background-position-x: -346px;
+}
+.confused {
+  background-position-x: -377px;
+}
+.worried {
+  background-position-x: -408px;
+}
+.oops {
+  background-position-x: -440px;
+}
+.chill {
+  background-position-x: -468px;
+}
+.frown {
+  background-position-x: -497px;
+}
+.hate {
+  background-position-x: -526px;
+}
+.extrafrown {
+  background-position-x: -555px;
+}
+.who {
+  background-position-x: -584px;
+}
+.drunk {
+  background-position-x: -614px;
+}
+.laugh {
+  background-position-x: -644px;
+}
+.notright {
+  background-position-x: -674px;
+}
+.rage {
+  background-position-x: -731px;
+}
+.love {
+  background-position-x: -761px;
+}
+.amazing {
+  background-position-x: -789px;
+}
+.nah {
+  background-position-x: -878px;
+}
+.closedeyenah {
+  background-position-x: -907px;
+}
+.widesmile {
+  background-position-x: -936px;
 }

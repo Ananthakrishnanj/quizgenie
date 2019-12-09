@@ -22,10 +22,10 @@ class Scorecard extends Component {
       if (this.rating >= i)
         stars.push(
           <span className="glowing-gold">
-            <span class="fa fa-star checked animated rotateIn "></span>
+            <span className="fa fa-star checked animated rotateIn "></span>
           </span>
         );
-      else stars.push(<span class="fa fa-star animated zoomIn"></span>);
+      else stars.push(<span className="fa fa-star animated zoomIn"></span>);
     }
     console.log(stars);
     return stars;
