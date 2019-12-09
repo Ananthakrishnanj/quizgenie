@@ -9,7 +9,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerName: this.props.location.state.name,
+      playerName: this.props.location.state ? this.props.location.state.name : "" ,
       isLoading: true,
       timer: "",
       score: 0,
@@ -31,12 +31,14 @@ class Game extends Component {
   };
 
   getQuesions = async () => {
+    console.log(this.props.location);
+    debugger;
     let baseUrl =
       "https://opentdb.com/api.php?amount=" +
       this.totalQuestions +
       "&token=" +
       this.sessionToken;
-    if (this.props.location.state.categoryId !== "any") {
+    if (this.props.location.state && this.props.location.state.categoryId !== "any") {
       baseUrl =
         baseUrl + "&category=" + Number(this.props.location.state.categoryId);
     }
@@ -79,6 +81,7 @@ class Game extends Component {
   };
 
   async componentDidMount() {
+    console.log(this.props);
     await this.getSessionToken();
     await this.getQuesions();
     await this.startTimer();
@@ -101,6 +104,15 @@ class Game extends Component {
               totalScore: this.state.totalScore,
               categoryId: this.props.location.state.categoryId
             }
+          }}
+        />
+      );
+    }
+    if (!this.props.location.state) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/"
           }}
         />
       );

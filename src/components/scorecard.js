@@ -2,20 +2,21 @@ import React, { Component } from "react";
 import "../styles//Scorecard.css";
 import { Link } from "react-router-dom";
 import { playAudio } from "../utils/audio";
+import { Redirect } from "react-router-dom";
 
 class Scorecard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.rating = Math.round(
-      (this.props.location.state.score / this.props.location.state.totalScore) *
-        5
-    );
   }
   rating;
 
   showRating = () => {
     playAudio("win");
+    this.rating = Math.round(
+      (this.props.location.state.score / this.props.location.state.totalScore) *
+        5
+    );
     let stars = [];
     for (let i = 1; i <= 5; i++) {
       if (this.rating >= i)
@@ -30,6 +31,15 @@ class Scorecard extends Component {
     return stars;
   };
   render() {
+    if (!this.props.location.state) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/"
+          }}
+        />
+      );
+    }
     return (
       <div className="scoreCard">
         <div className="playerName">

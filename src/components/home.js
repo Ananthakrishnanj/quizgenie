@@ -136,7 +136,7 @@ class Home extends Component {
       <div>
         <audio
           src="https://www.looperman.com/media/loops/3480777/looperman-l-3480777-0184512-percussion-arabic-saidi-style.mp3"
-          autoPlay="true"
+          autoPlay
           id="audio"
           loop
           controls
