@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "../styles/Home.css";
 import { Link } from "react-router-dom";
 import { playAudio } from "../utils/audio";
+import {
+  changeName,
+  changeCategoryId,
+  changeCategoryName
+} from "../redux/gamestatus/gameStatusActions";
 
 class Home extends Component {
   constructor(props) {
@@ -13,12 +19,17 @@ class Home extends Component {
   }
 
   changeName = e => {
+    this.props.changeName(e.target.value);
     this.setState({
       name: e.target.value
     });
   };
 
   changeCategoryId = e => {
+    this.props.changeCategoryId(e.target.value);
+    this.props.changeCategoryName(
+      e.target.options[e.target.selectedIndex].text
+    );
     this.setState({
       categoryId: e.target.value
     });
@@ -165,11 +176,7 @@ class Home extends Component {
           </div>
           <Link
             to={{
-              pathname: "/game",
-              state: {
-                name: this.state.name,
-                categoryId: this.state.categoryId
-              }
+              pathname: "/game"
             }}
           >
             <button
@@ -190,4 +197,19 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    name: state.gameStatus.name,
+    categoryId: state.gameStatus.categoryId,
+    categoryName: state.gameStatus.categoryName
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    changeName: name => dispatch(changeName(name)),
+    changeCategoryId: id => dispatch(changeCategoryId(id)),
+    changeCategoryName: name => dispatch(changeCategoryName(name))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

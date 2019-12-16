@@ -1,20 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Axios from "axios";
 import "../styles/Game.css";
 import Questions from "./questions";
 import Loader from "./loader";
 import { Redirect } from "react-router-dom";
+import { changeGameStatus } from "../redux/gamestatus/gameStatusActions";
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerName: this.props.location.state.name,
       isLoading: true,
-      timer: "",
-      score: 0,
-      totalScore: this.totalQuestions,
-      gameCompleted: false
+      timer: ""
     };
   }
 
@@ -36,7 +34,7 @@ class Game extends Component {
       this.totalQuestions +
       "&token=" +
       this.sessionToken;
-    if (this.props.location.state.categoryId !== "any") {
+    if (this.props.categoryId !== "any") {
       baseUrl =
         baseUrl + "&category=" + Number(this.props.location.state.categoryId);
     }
@@ -60,22 +58,10 @@ class Game extends Component {
       this.setState({ timer: minutes + ":" + seconds });
 
       if (--timer < 0) {
-        this.changeGameStatus(true);
+        this.props.changeGameStatus(true);
+        clearInterval(this.startTimer);
       }
     }, 1000);
-  };
-
-  updateScore = points => {
-    this.setState({
-      score: this.state.score + points
-    });
-  };
-
-  changeGameStatus = status => {
-    clearInterval(this.startTimer);
-    this.setState({
-      gameCompleted: status
-    });
   };
 
   async componentDidMount() {
@@ -89,17 +75,13 @@ class Game extends Component {
   }
 
   render() {
-    if (this.state.gameCompleted === true) {
+    if (this.props.gameStatus === true) {
       return (
         <Redirect
           to={{
             pathname: "/scorecard",
             state: {
-              name: this.state.playerName,
-              timer: this.state.timer,
-              score: this.state.score,
-              totalScore: this.state.totalScore,
-              categoryId: this.props.location.state.categoryId
+              timer: this.state.timer
             }
           }}
         />
@@ -113,15 +95,15 @@ class Game extends Component {
             <span className="timerText">{this.state.timer}</span>
           </div>
           <div className="header-name">Quiz Genie</div>
-          <div className="header-name">{this.props.location.state.name}</div>
+          <div className="header-name">{this.props.name}</div>
         </div>
         {this.state.isLoading ? (
           <Loader />
         ) : (
           <Questions
             questions={this.questions}
-            updateScore={this.updateScore}
-            changeGameStatus={this.changeGameStatus}
+            // updateScore={this.updateScore}
+            // changeGameStatus={this.changeGameStatus}
           />
         )}
       </div>
@@ -129,4 +111,20 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapStateToProps = state => {
+  return {
+    name: state.gameStatus.name,
+    score: state.gameStatus.score,
+    categoryId: state.gameStatus.categoryId,
+    totalScore: state.gameStatus.totalScore,
+    gameStatus: state.gameStatus.gameStatus
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeGameStatus: () => dispatch(changeGameStatus(true))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

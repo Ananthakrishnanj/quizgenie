@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import "../styles/Questioncard.css";
+import { connect } from "react-redux";
 import { playAudio } from "../utils/audio";
+import {
+  changeGameStatus,
+  updateScore
+} from "../redux/gamestatus/gameStatusActions";
 
 class Questions extends Component {
   constructor(props) {
@@ -63,4 +68,20 @@ class Questions extends Component {
   }
 }
 
-export default Questions;
+const mapStateToProps = state => {
+  return {
+    name: state.gameStatus.name,
+    score: state.gameStatus.score,
+    totalScore: state.gameStatus.totalScore,
+    gameStatus: state.gameStatus.gameStatus
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeGameStatus: status => dispatch(changeGameStatus(status)),
+    updateScore: point => dispatch(updateScore(point))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);

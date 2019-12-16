@@ -1,6 +1,10 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { expressionReducer } from "./genieexpression/genieExpressionReducer";
-
-const store = createStore(expressionReducer);
+import { gameStatusReducer } from "./gamestatus/gameStatusReducer";
+const rootReducer = combineReducers({
+  expression: expressionReducer,
+  gameStatus: gameStatusReducer
+});
+const store = createStore(rootReducer);
 
 export { store };

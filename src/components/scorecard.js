@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "../styles//Scorecard.css";
 import { Link } from "react-router-dom";
 import { playAudio } from "../utils/audio";
@@ -7,10 +8,7 @@ class Scorecard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.rating = Math.round(
-      (this.props.location.state.score / this.props.location.state.totalScore) *
-        5
-    );
+    this.rating = Math.round((this.props.score / this.props.totalScore) * 5);
   }
   rating;
 
@@ -32,22 +30,15 @@ class Scorecard extends Component {
   render() {
     return (
       <div className="scoreCard">
-        <div className="playerName">
-          Name : {this.props.location.state.name}
-        </div>
+        <div className="playerName">Name : {this.props.name}</div>
         <div className="score">
-          Score : {this.props.location.state.score}/
-          {this.props.location.state.totalScore}
+          Score : {this.props.score}/{this.props.totalScore}
         </div>
         <div className="time">ETA : {this.props.location.state.timer}</div>
         <div className="stars">{this.showRating()}</div>
         <Link
           to={{
-            pathname: "/game",
-            state: {
-              name: this.props.location.state.name,
-              categoryId: this.props.location.state.categoryId
-            }
+            pathname: "/game"
           }}
         >
           <button className="startButton">Re-play Quiz</button>
@@ -57,4 +48,18 @@ class Scorecard extends Component {
   }
 }
 
-export default Scorecard;
+const mapStateToProps = state => {
+  return {
+    name: state.gameStatus.name,
+    score: state.gameStatus.score,
+    categoryId: state.gameStatus.categoryId,
+    totalScore: state.gameStatus.totalScore,
+    gameStatus: state.gameStatus.gameStatus
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Scorecard);
